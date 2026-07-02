@@ -42,3 +42,8 @@ src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# The SPECS ground-truth table and eICU diagnosis strings are intentionally wide
+# for readability/alignment.
+"src/estrogen_asah_dci/synthetic.py" = ["E501"]
