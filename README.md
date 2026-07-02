@@ -54,6 +54,11 @@ make all                 # runs scripts/run_*.py on the synthetic fixture
 
 To run on real data, set `config/paths.yaml` and re-run `make all`.
 
+> **exFAT / network volumes:** if the repo lives on a filesystem that cannot host
+> a Python venv (e.g. exFAT), put the environment elsewhere:
+> `export UV_LINK_MODE=copy UV_PROJECT_ENVIRONMENT="$HOME/.venvs/estrogen-asah-dci"`
+> before `uv sync` / `make`.
+
 ## Layout
 
 ```
