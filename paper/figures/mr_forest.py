@@ -50,6 +50,6 @@ for s in ("top", "right", "left"):
     ax.spines[s].set_visible(False)
 ax.tick_params(left=False)
 ax.margins(y=0.08)
-fig.savefig("/Volumes/Niels 2/MIMIC/estrogen-asah-dci/manuscript/figures/mr_forest.png",
+fig.savefig("/Volumes/Niels 2/MIMIC/estrogen-asah-dci/paper/figures/mr_forest.png",
             dpi=180, bbox_inches="tight", facecolor="white")
 print("saved")

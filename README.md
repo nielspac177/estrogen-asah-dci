@@ -68,7 +68,7 @@ scripts/                 numbered end-to-end pipeline (run_00 … run_50)
 dashboard/               interactive aggregate-results app (no PHI)
 data/synthetic/          committed fake cohort for CI / reproducibility
 docs/adr/                architecture decision records
-manuscript/              STROBE-RWE write-up
+paper/                   manuscript, figures, tables (both arms), one place
 tests/                   unit + integration
 ```
 
