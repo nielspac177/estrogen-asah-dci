@@ -59,7 +59,7 @@ ax.text(50, 97.3, "Estrogen and aneurysmal subarachnoid haemorrhage: two study d
 
 # question
 card(50, 90, 92, 7.6, [
-    "Does estrogen protect the brain's vessels — fewer aneurysm ruptures (aSAH) and less",
+    "Does estrogen protect the brain's vessels: fewer aneurysm ruptures (aSAH) and less",
     "delayed cerebral ischaemia?   Protective in animal models · never tested in humans."],
     fc="#FFFBF2", ec=AMBER, fs=9.2, lh=3.1)
 
@@ -116,13 +116,13 @@ varrow(50, rail, 21.4, color=PUR)
 # convergence
 card(50, 15.8, 86, 9, [
     "Two designs with different weaknesses point the same way.",
-    "Age confounding would bias the ICU arm — but the genetic arm, which age cannot touch, agrees."],
+    "Age confounding would bias the ICU arm, but the genetic arm, which age cannot touch, agrees."],
     head="CONVERGENT EVIDENCE", fc=PUR_BG, ec=PUR, fs=8.9, lh=3.0)
 varrow(50, 11.3, 7.9, color=PUR)
 
 # conclusion
 card(50, 4.3, 92, 5.6, [
-    "Estrogen does not measurably protect against aneurysmal SAH in humans — a rigorous, honest null."],
+    "Estrogen does not measurably protect against aneurysmal SAH in humans."],
     fc="#12303a", ec="#12303a", tc="white", fs=10.2, rs=1.8, shadow=True)
 
 fig.savefig("/Volumes/Niels 2/MIMIC/estrogen-asah-dci/manuscript/figures/study_workflow.png",
