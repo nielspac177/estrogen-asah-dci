@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Set up Python
+        run: uv python install 3.11
+
+      - name: Sync deps
+        run: uv sync --extra dev
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Guard — no PhysioNet data committed
+        run: |
+          if git ls-files | grep -E '\.(csv|csv\.gz|db|duckdb|parquet)$' | grep -v '^data/synthetic/'; then
+            echo "ERROR: data-like files tracked outside data/synthetic/"; exit 1
+          fi
+          echo "OK: no source data committed"
+
+      - name: Tests (synthetic fixture only, no PhysioNet data)
+        run: uv run pytest
