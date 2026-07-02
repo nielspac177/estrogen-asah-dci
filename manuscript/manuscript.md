@@ -183,7 +183,15 @@ was null.
 
 Several limitations dominate interpretation. First, exposure is a coarse
 age-based proxy for oestrogen state, and age and menopause cannot be fully
-disentangled. Second, the DCI composite depends on coding that is insensitive in
+disentangled. Critically, a biological definition of menopause is unavailable in
+these data: among 354 women in the MIMIC aSAH cohort, estradiol was measured in 1,
+follicle-stimulating hormone in 6, and luteinising hormone in 3; menopausal-status
+diagnoses appeared in 3 and bilateral oophorectomy in 1, and eICU contained no
+gonadotropin/estradiol assays and no coded menopausal or oophorectomy history at
+all. Acute neurocritical care simply does not measure the reproductive-endocrine
+state, so age is the only available proxy — the direct cause of the
+non-identifiability described above and a fundamental ceiling on what any ICU
+database can contribute to this question. Second, the DCI composite depends on coding that is insensitive in
 the ICD-9 era, and the two sources code vasospasm differently, producing the
 observed heterogeneity. Third, in-hospital mortality competes with DCI
 ascertainment. Fourth, the cohort is modest and the analysis is underpowered for
