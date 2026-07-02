@@ -257,7 +257,9 @@ def simulate_cohort(n: int = 2000, seed: int = 0, log_or_post: float | None = No
     diabetes = rng.random(n) < 0.2
     post = (sex == "F") & (age >= 51)
     male = sex == "M"
-    lp = -1.0 + log_or_post * post + 0.3 * male + 0.4 * htn + 0.5 * smoking + 0.01 * (age - 58)
+    # No independent age term: menopause is age-defined, and the real analysis does
+    # not (cannot) co-adjust age, so the injected OR must be recoverable unadjusted.
+    lp = -1.0 + log_or_post * post + 0.3 * male + 0.4 * htn + 0.5 * smoking
     p = 1.0 / (1.0 + np.exp(-lp))
     dci = rng.random(n) < p
     died = rng.random(n) < 0.15

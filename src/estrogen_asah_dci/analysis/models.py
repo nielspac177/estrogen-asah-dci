@@ -16,7 +16,11 @@ import numpy as np
 import pandas as pd
 import statsmodels.formula.api as smf
 
-DEFAULT_COVARIATES = ["age_c", "htn", "smoking", "diabetes"]
+# AUDIT FIX (ADR-0005): age is a deterministic driver of the age-defined menopause
+# exposure, so co-adjusting a smooth age term with the menopause step is a
+# functional-form artifact (false-precision CI) and is prohibited. The outcome
+# model uses the same measured confounders as the propensity model (weighting.py).
+DEFAULT_COVARIATES = ["htn", "smoking", "diabetes"]
 
 
 @dataclass

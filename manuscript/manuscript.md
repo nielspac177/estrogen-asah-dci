@@ -148,14 +148,38 @@ strong positive association with DCI (OR 3.39, 1.70–6.76) that we do not
 interpret causally: in-hospital hormone exposure is captured only during
 admission and is subject to confounding by indication and immortal-time bias.
 
+### Robustness and specification-curve analyses
+
+Because the goal of recovering a positive finding invites analytical flexibility,
+we ran a pre-specified specification curve (`multiverse.spec_curve`) spanning six
+menopause age-cutoffs, two covariate sets, two outcome operationalisations, and
+three source subsets (72 forks; ADR-0004/0005). Of 71 converging specifications,
+41 were statistically significant — and **all 41 lay in the direction opposite to
+the mechanistic hypothesis** (postmenopausal lower DCI); no significant fork
+favoured the hypothesis. The one design that structurally separates menopause
+from ageing, an age×sex restricted-cubic-spline difference-in-differences with men
+as a chronological-ageing reference (`multiverse.age_sex_did`), was null
+(OR-ratio for a female-specific rise in DCI odds across the transition 1.04, 95%
+CI 0.62–1.76). Competing-mortality sensitivities (survivor restriction,
+outcome-component variants) were reported but are interpreted only as concordance
+checks, as each can move the estimate mechanically.
+
 ## Discussion
 
 In this reproducible multi-database pilot we found no significant association
-between menopausal state and DCI after aSAH. The a priori hypothesis — that
-higher endogenous oestrogen (premenopausal state) would be protective against DCI
-— was not supported; the crude data pointed, if anything, in the opposite
-direction, but this pattern is readily explained by competing mortality and by
-the fundamental collinearity of age with menopausal state.
+between menopausal state and DCI after aSAH, and the a priori oestrogen-protective
+hypothesis was not supported in any defensible analysis. An independent adversarial
+methodological audit (`docs/audit/`) identified the dominant threat not as
+competing mortality but as **non-identifiability**: because menopausal state is a
+deterministic function of age in these data, there is no age overlap across strata,
+and age has a direct effect on vasospasm (younger patients have more) that is
+collinear with the exposure and runs opposite to the hypothesis. The crude
+"premenopausal-excess" pattern is therefore most parsimoniously a chronological-
+ageing and differential-ascertainment signal rather than evidence of an oestrogen
+effect masked by survival bias. Consistent with this, the specification curve
+yielded significant results exclusively in the anti-hypothesis direction, and the
+age×sex difference-in-differences — the only estimand that nets out shared ageing —
+was null.
 
 Several limitations dominate interpretation. First, exposure is a coarse
 age-based proxy for oestrogen state, and age and menopause cannot be fully
