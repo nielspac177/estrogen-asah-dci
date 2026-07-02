@@ -51,13 +51,13 @@ def varrow(x, y1, y2, color=MUTE, lw=1.8):
 
 
 # title
-ax.text(50, 97.3, "Study design: triangulating the role of estrogen in aneurysmal SAH",
+ax.text(50, 97.3, "Study design: estrogen and aneurysmal SAH — two complementary approaches",
         ha="center", fontsize=13.5, fontweight="bold", color=INK)
 
 # aim
 card(50, 90.5, 92, 7, [
     "Aim: does estrogen influence the risk of aneurysmal SAH / delayed cerebral ischaemia?",
-    "Estimate with two designs whose biases do not overlap, then compare (triangulation)."],
+    "Estimate it two ways whose weaknesses do not overlap, then read the answers together."],
     fc=AMBER_BG, ec=AMBER, fs=9.2, lh=3.1)
 
 # top fork
@@ -121,12 +121,12 @@ for x, c in [(26.5, BLUE), (73.5, GREEN)]:
 ax.add_line(Line2D([26.5, 73.5], [rail, rail], color=MUTE, lw=1.8))
 varrow(50, rail, 17.3, color=PUR)
 
-# triangulation (design statement, not a result)
+# synthesis (design statement, not a result)
 card(50, 10.5, 86, 10.5, [
-    "Compare the estrogen–aSAH association across both designs. Because their biases do not",
-    "overlap, concordance strengthens — and discordance localizes — the causal interpretation."],
-    head="TRIANGULATION", fc=PUR_BG, ec=PUR, fs=8.8, lh=3.1)
+    "Read the estrogen–aSAH association from both designs together. Where they agree, the",
+    "case is stronger; where they differ, the disagreement points to which bias is at work."],
+    head="SYNTHESIS ACROSS DESIGNS", fc=PUR_BG, ec=PUR, fs=8.8, lh=3.1)
 
-fig.savefig("/Volumes/Niels 2/MIMIC/estrogen-asah-dci/manuscript/figures/triangulation_methods.png",
+fig.savefig("/Volumes/Niels 2/MIMIC/estrogen-asah-dci/manuscript/figures/study_methods.png",
             dpi=180, bbox_inches="tight", facecolor="white")
 print("saved")

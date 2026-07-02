@@ -54,7 +54,7 @@ def varrow(x, y1, y2, color=MUTE, lw=1.8):
 
 
 # title
-ax.text(50, 97.3, "Triangulating the role of estrogen in aneurysmal subarachnoid haemorrhage",
+ax.text(50, 97.3, "Estrogen and aneurysmal subarachnoid haemorrhage: two study designs",
         ha="center", fontsize=13.5, fontweight="bold", color=INK)
 
 # question
@@ -115,9 +115,9 @@ varrow(50, rail, 21.4, color=PUR)
 
 # convergence
 card(50, 15.8, 86, 9, [
-    "Two independent methods with non-overlapping weaknesses reach the SAME answer.",
-    "If age-confounding were hiding a real effect, the genetic arm (immune) would show it."],
-    head="TRIANGULATION", fc=PUR_BG, ec=PUR, fs=8.9, lh=3.0)
+    "Two designs with different weaknesses point the same way.",
+    "Age confounding would bias the ICU arm — but the genetic arm, which age cannot touch, agrees."],
+    head="CONVERGENT EVIDENCE", fc=PUR_BG, ec=PUR, fs=8.9, lh=3.0)
 varrow(50, 11.3, 7.9, color=PUR)
 
 # conclusion
@@ -125,6 +125,6 @@ card(50, 4.3, 92, 5.6, [
     "Estrogen does not measurably protect against aneurysmal SAH in humans — a rigorous, honest null."],
     fc="#12303a", ec="#12303a", tc="white", fs=10.2, rs=1.8, shadow=True)
 
-fig.savefig("/Volumes/Niels 2/MIMIC/estrogen-asah-dci/manuscript/figures/triangulation_workflow.png",
+fig.savefig("/Volumes/Niels 2/MIMIC/estrogen-asah-dci/manuscript/figures/study_workflow.png",
             dpi=180, bbox_inches="tight", facecolor="white")
 print("saved")
