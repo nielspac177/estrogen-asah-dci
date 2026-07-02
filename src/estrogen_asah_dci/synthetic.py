@@ -233,6 +233,58 @@ def eicu_tables() -> dict[str, pd.DataFrame]:
     }
 
 
+def simulate_cohort(n: int = 2000, seed: int = 0, log_or_post: float | None = None) -> pd.DataFrame:
+    """A large *harmonized* cohort with a known injected effect, for estimator validation.
+
+    Unlike the SPECS fixtures (which test extraction), this produces a ready-to-analyze
+    cohort where postmenopausal vs premenopausal DCI odds follow ``exp(log_or_post)``,
+    so analysis code can be checked for recovering a known truth.
+    """
+    import numpy as np
+
+    from .harmonize.common_schema import coerce_cohort
+
+    if log_or_post is None:
+        log_or_post = float(np.log(0.6))  # protective, matching the hypothesis direction
+    rng = np.random.default_rng(seed)
+    source = rng.choice(["mimic_iv", "eicu"], n)
+    hosp = np.where(source == "mimic_iv", "mimic_iv",
+                    np.array(["eicu:" + str(h) for h in rng.integers(1, 6, n)]))
+    sex = rng.choice(["F", "M"], n, p=[0.6, 0.4])
+    age = np.clip(rng.normal(58, 12, n), 18, 95)
+    htn = rng.random(n) < 0.5
+    smoking = rng.random(n) < 0.3
+    diabetes = rng.random(n) < 0.2
+    post = (sex == "F") & (age >= 51)
+    male = sex == "M"
+    lp = -1.0 + log_or_post * post + 0.3 * male + 0.4 * htn + 0.5 * smoking + 0.01 * (age - 58)
+    p = 1.0 / (1.0 + np.exp(-lp))
+    dci = rng.random(n) < p
+    died = rng.random(n) < 0.15
+    out = pd.DataFrame({
+        "source": source,
+        "patient_id": [f"{s}:{i}" for i, s in enumerate(source)],
+        "hospital_id": hosp,
+        "age": age,
+        "sex": sex,
+        "vasospasm_dx": dci,          # route all DCI through one component -> composite==dci
+        "dci_procedure": False,
+        "delayed_infarction": False,
+        "hrt_exposure": rng.random(n) < 0.05,
+        "aneurysm_secured": rng.random(n) < 0.8,
+        "treatment_modality": rng.choice(["clip", "coil"], n),
+        "htn": htn,
+        "smoking": smoking,
+        "diabetes": diabetes,
+        "severity_gcs": pd.NA,
+        "apache_score": np.where(source == "eicu", rng.normal(60, 15, n), np.nan),
+        "died": died,
+        "poor_disposition": died | (rng.random(n) < 0.05),
+        "icu_los_days": np.clip(rng.normal(12, 6, n), 0, None),
+    })
+    return coerce_cohort(out)
+
+
 def write_eicu(dirpath: str | Path) -> Path:
     """Write synthetic eICU tables as gzipped CSVs (mirrors the real v2.0 layout)."""
     dirpath = Path(dirpath)
