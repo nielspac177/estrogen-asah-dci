@@ -59,11 +59,11 @@ Delayed cerebral ischaemia after aneurysmal subarachnoid haemorrhage is a major
 driver of poor outcome, and the search for modifiable protection has repeatedly
 returned to estrogen. Ovariectomised animals rupture and infarct more often,
 17-beta-oestradiol acts on endothelial nitric-oxide and endothelin-1 signalling in
-haemorrhage models, and human cerebral vessels carry estrogen receptors. In
+haemorrhage models, and human cerebral vessels carry estrogen receptors.[1,2] In
 population data, women with a shorter reproductive span or earlier menopause have
 a higher risk of subarachnoid haemorrhage, and incidence rises around the age of
-menopause. Together these observations suggest that higher estrogen exposure might
-protect against aneurysm formation, rupture, or the ischaemia that follows.
+menopause.[3] Together these observations suggest that higher estrogen exposure
+might protect against aneurysm formation, rupture, or the ischaemia that follows.
 
 Testing that idea in humans is hard for one reason: the exposure people most want
 to study, lifetime estrogen, is bound to age, and age is itself a strong and
@@ -72,16 +72,17 @@ An analysis that compares older and younger women therefore cannot tell an estro
 effect apart from an age effect. The adjacent genetic question, whether sex-hormone
 biology influences aneurysm risk, has been examined before, but the two published
 Mendelian-randomization studies disagree on the direction of the sex-hormone-binding
-globulin effect, and continuous age at natural menopause has not been tested against
-rupture-specific outcomes.
+globulin effect,[4,5] and continuous age at natural menopause has not been tested
+against rupture-specific outcomes.
 
 We approached the question with two designs chosen because their weaknesses do not
 overlap (Figure 1). The first is an observational intensive-care analysis, which we
 present mainly to show why the intuitive approach fails. The second is Mendelian
 randomization, which uses genetic variants fixed at conception as instruments for
 menopausal timing and is therefore free of the age confounding that defeats the
-observational arm. Reading the two together (Figure 2) is more informative than
-either alone.
+observational arm. Reading the two together (Figure 2), an approach known as
+triangulation, is more informative than either alone because the designs fail in
+unrelated ways.[16]
 
 ## Methods
 
@@ -97,7 +98,7 @@ address the ischaemia endpoint directly; it speaks to aneurysm rupture.
 
 ### Observational arm
 
-We pooled adult aSAH admissions from MIMIC-IV v3.1 and eICU-CRD v2.0, defined by
+We pooled adult aSAH admissions from MIMIC-IV v3.1 and eICU-CRD v2.0,[6,7] defined by
 a nontraumatic subarachnoid-haemorrhage code together with an aneurysm code or an
 aneurysm-securing procedure, with traumatic and arteriovenous-malformation cases
 excluded. Menopausal state was defined by age (premenopausal below 51,
@@ -113,16 +114,17 @@ men to absorb the shared ageing gradient.
 ### Genetic arm
 
 We used two-sample Mendelian randomization. Instruments for age at natural
-menopause came from Ruth 2021 (ReproGen), selected at genome-wide significance and
-distance-clumped; we note that distance clumping approximates linkage-disequilibrium
-clumping and report it as such. The outcome was aSAH liability from Bakker 2020,
-European ancestry, with UK Biobank samples excluded to avoid overlap with the
+menopause came from Ruth et al. 2021 (ReproGen),[8] selected at genome-wide
+significance and distance-clumped; we note that distance clumping approximates
+linkage-disequilibrium clumping and report it as such. The outcome was aSAH
+liability from Bakker et al. 2020,[9] European ancestry, with UK Biobank samples
+excluded to avoid overlap with the
 UK-Biobank-derived exposure, a choice that biases toward the null and is therefore
 conservative. Effects were harmonised to a common allele and matched on genome
 position; both datasets are GRCh37. We estimated the effect with random-effects
 inverse-variance weighting and tested robustness with MR-Egger (intercept for
 directional pleiotropy), the weighted median, MR-PRESSO, Steiger filtering, and
-leave-one-out. We report the effect per year and per standard deviation of
+leave-one-out.[10-13] Reporting follows STROBE-MR.[14] We report the effect per year and per standard deviation of
 menopausal age (taken as four years), the minimum detectable effect at 80% power,
 and a two-one-sided equivalence test against a smallest effect of interest of an
 odds ratio of 0.90 per standard deviation, anchored to the reproductive-timing
@@ -131,9 +133,9 @@ cohort literature.
 ### Positive control
 
 Because a null is only interpretable if the pipeline can detect a real effect, we
-ran the identical instruments and code against breast cancer (Michailidou 2017,
-76,192 cases and 63,082 controls), where later menopause is an established risk
-factor of about a 5% increase in odds per year.
+ran the identical instruments and code against breast cancer (Michailidou et al.
+2017, 76,192 cases and 63,082 controls),[15] where later menopause is an
+established risk factor of about a 5% increase in odds per year.
 
 ## Results
 
@@ -242,3 +244,62 @@ the GWAS Catalog); see the repository's data-access notes.
   (`figures/study_workflow.png`).
 - **Table 1.** Estimand comparison (exposure, outcome node, population, dominant
   bias, and what each arm can and cannot identify).
+
+## Statements
+
+**Ethics.** MIMIC-IV and eICU-CRD are de-identified and were used under PhysioNet
+credentialed access; secondary analysis is exempt from further review. The genetic
+arm used published, publicly available summary statistics only.
+
+**Funding.** [to be completed].
+
+**Competing interests.** The authors declare no competing interests.
+
+**Data and code availability.** Analysis code and a synthetic-data reproduction are
+public at github.com/nielspac177/estrogen-asah-dci (observational arm) and
+github.com/nielspac177/estrogen-aneurysm-mr (genetic arm). Individual patient data
+require PhysioNet credentialing; GWAS summary statistics are public (see above).
+
+**Author contributions.** [to be completed].
+
+## References
+
+*Citations are provisional placeholders; verify against source records before
+submission.*
+
+1. Tada Y, Wada K, Shimada K, et al. Estrogen protects against intracranial
+   aneurysm rupture in ovariectomised mice. Hypertension. 2014.
+2. Krause DN, Duckles SP, Pelligrino DA. Influence of sex steroid hormones on the
+   cerebrovascular system. J Appl Physiol. 2006.
+3. Reproductive factors and risk of aneurysmal subarachnoid haemorrhage in the
+   Nurses' Health Study cohort. Neurology. 2022. (PMC9162048).
+4. Molenberg R, Aalbers MW, Appelman APA, et al. Sex hormones and risk of
+   aneurysmal subarachnoid haemorrhage: a Mendelian randomization study. Stroke.
+   2022;53:2870-2875.
+5. Tan X, Wu Q, et al. Sex hormones and cerebral aneurysm / subarachnoid
+   haemorrhage: a Mendelian randomization study. J Clin Neurosci. 2025;136:111244.
+6. Johnson AEW, Bulgarelli L, Shen L, et al. MIMIC-IV, a freely accessible
+   electronic health record dataset. Sci Data. 2023;10:1.
+7. Pollard TJ, Johnson AEW, Raffa JD, et al. The eICU Collaborative Research
+   Database. Sci Data. 2018;5:180178.
+8. Ruth KS, Day FR, Hussain J, et al. Genetic insights into biological mechanisms
+   governing human ovarian ageing. Nature. 2021;596:393-397.
+9. Bakker MK, van der Spek RAA, van Rheenen W, et al. Genome-wide association study
+   of intracranial aneurysms identifies 17 risk loci. Nat Genet. 2020;52:1303-1313.
+10. Bowden J, Davey Smith G, Burgess S. Mendelian randomization with invalid
+    instruments: effect estimation and bias detection through Egger regression.
+    Int J Epidemiol. 2015;44:512-525.
+11. Bowden J, Davey Smith G, Haycock PC, Burgess S. Consistent estimation in
+    Mendelian randomization with the weighted median estimator. Genet Epidemiol.
+    2016;40:304-314.
+12. Verbanck M, Chen CY, Neale B, Do R. Detection of widespread horizontal
+    pleiotropy in causal relationships (MR-PRESSO). Nat Genet. 2018;50:693-698.
+13. Hemani G, Tilling K, Davey Smith G. Orienting the causal relationship between
+    imprecisely measured traits using GWAS summary data. PLoS Genet. 2017;13:e1007081.
+14. Skrivankova VW, Richmond RC, Woolf BAR, et al. Strengthening the reporting of
+    observational studies in epidemiology using Mendelian randomization (STROBE-MR).
+    JAMA. 2021;326:1614-1621.
+15. Michailidou K, Lindström S, Dennis J, et al. Association analysis identifies 65
+    new breast cancer risk loci. Nature. 2017;551:92-94.
+16. Lawlor DA, Tilling K, Davey Smith G. Triangulation in aetiological
+    epidemiology. Int J Epidemiol. 2016;45:1866-1886.
