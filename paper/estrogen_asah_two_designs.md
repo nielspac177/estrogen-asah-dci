@@ -132,7 +132,9 @@ cohort literature. We repeated the analysis for sex-hormone-binding globulin and
 total testosterone in women (Ruth 2020), and ran a multivariable analysis of
 sex-hormone-binding globulin with bioavailable testosterone to separate the two
 overlapping instruments. Robustness to instrument selection was checked by varying
-the distance-clumping window from 250 kb to 5 Mb.
+the distance-clumping window from 250 kb to 5 Mb and by re-running with
+reference-panel r-squared clumping (PLINK, 1000 Genomes European panel, r-squared
+below 0.001 over 10 Mb).
 
 ### Positive control
 
@@ -200,9 +202,10 @@ bioavailable testosterone 1.03, 95% CI 0.57 to 1.86), and moved the SHBG point
 estimate from 0.73 to 1.06. The published disagreement is therefore not resolvable
 in these data; the SHBG signal appears in part to reflect its shared testosterone
 component. The primary menopause estimate was stable across clumping windows from
-250 kb to 5 Mb (odds ratio 1.02 to 1.03), so the result does not depend on the
-clumping choice, and real reference-panel clumping is expected to fall within that
-range.
+250 kb to 5 Mb (odds ratio 1.02 to 1.03), and reference-panel r-squared clumping
+against a 1000 Genomes European panel gave the same answer (odds ratio 1.03, 95%
+CI 0.98 to 1.09; 81 instruments), so the result does not depend on the clumping
+method.
 
 ### Reading the two arms together
 

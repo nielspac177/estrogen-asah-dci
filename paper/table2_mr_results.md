@@ -13,6 +13,7 @@ stated. Distance clumping; random-effects IVW. OR = odds ratio.
 | Multivariable | SHBG, women, per SD (adj. testosterone) | 106 | 1.06 (0.50–2.28) | 0.88 | SHBG point moves 0.73 → 1.06 when testosterone is held fixed |
 | Multivariable | Bioavailable testosterone, women, per SD (adj. SHBG) | 106 | 1.03 (0.57–1.86) | 0.93 | |
 | Sensitivity | Age at menopause across clumping windows 250 kb–5 Mb | 61–107 | 1.02–1.03 | — | estimate stable to clumping stringency |
+| Sensitivity | Age at menopause, r² LD clumping (PLINK, 1000G EUR, r²<0.001/10 Mb) | 81 | 1.03 (0.98–1.09) | 0.22 | gold-standard clumping confirms the distance-clumped primary |
 
 No exposure shows a significant effect on aSAH. The published SHBG direction
 conflict is not resolvable at this precision, and the univariable SHBG signal
