@@ -128,7 +128,11 @@ leave-one-out.[10-13] Reporting follows STROBE-MR.[14] We report the effect per 
 menopausal age (taken as four years), the minimum detectable effect at 80% power,
 and a two-one-sided equivalence test against a smallest effect of interest of an
 odds ratio of 0.90 per standard deviation, anchored to the reproductive-timing
-cohort literature.
+cohort literature. We repeated the analysis for sex-hormone-binding globulin and
+total testosterone in women (Ruth 2020), and ran a multivariable analysis of
+sex-hormone-binding globulin with bioavailable testosterone to separate the two
+overlapping instruments. Robustness to instrument selection was checked by varying
+the distance-clumping window from 250 kb to 5 Mb.
 
 ### Positive control
 
@@ -184,6 +188,22 @@ standard deviation (P = 0.027) but could not exclude the null or a mild harmful
 effect (P = 0.53). The point estimate leans, without significance, toward higher
 rather than lower risk.
 
+Widening the genetic arm to other sex-hormone exposures did not change the picture
+(Figure 3). Neither sex-hormone-binding globulin in women (odds ratio 0.73, 95% CI
+0.41 to 1.31) nor total testosterone (0.98, 95% CI 0.77 to 1.27) reached
+significance against aSAH. The single-exposure SHBG estimate sat on the opposite
+side of the null from Molenberg 2022 (which reported 1.18) and closer to Tan/Wu
+2025, but its interval spans both. A multivariable analysis of SHBG together with
+bioavailable testosterone, which separates the two overlapping instruments,
+returned direct effects near the null for both (SHBG 1.06, 95% CI 0.50 to 2.28;
+bioavailable testosterone 1.03, 95% CI 0.57 to 1.86), and moved the SHBG point
+estimate from 0.73 to 1.06. The published disagreement is therefore not resolvable
+in these data; the SHBG signal appears in part to reflect its shared testosterone
+component. The primary menopause estimate was stable across clumping windows from
+250 kb to 5 Mb (odds ratio 1.02 to 1.03), so the result does not depend on the
+clumping choice, and real reference-panel clumping is expected to fall within that
+range.
+
 ### Reading the two arms together
 
 Both designs return no protective effect, and their weaknesses do not overlap. If
@@ -222,11 +242,12 @@ conflict, are natural next exposures in the same framework. Finally, the
 observational cohort is an intensive-care population and conditions on survival to
 admission.
 
-The next steps follow from these bounds: a multi-exposure genetic analysis that
-adds sex-hormone-binding globulin and testosterone and resolves the existing
-disagreement under one method, and, for the ischaemia question specifically, a
-longitudinal target-trial emulation of hormone therapy in data with outpatient
-dispensing and incident coding.
+The multi-exposure and multivariable analyses reported here already widen the
+genetic arm to sex-hormone-binding globulin and testosterone and show that the
+prior disagreement is not resolvable at current precision. The remaining step, for
+the ischaemia question specifically, is a longitudinal target-trial emulation of
+hormone therapy in data with outpatient dispensing and incident coding, which the
+present sources cannot provide.
 
 ## Data and code availability
 
@@ -242,8 +263,11 @@ the GWAS Catalog); see the repository's data-access notes.
   (`figures/study_methods.png`).
 - **Figure 2.** Results overview: convergent evidence across the two designs
   (`figures/study_workflow.png`).
+- **Figure 3.** Mendelian-randomization forest: sex-hormone exposures on aSAH, with
+  the positive control (`figures/mr_forest.png`).
 - **Table 1.** Estimand comparison (exposure, outcome node, population, dominant
   bias, and what each arm can and cannot identify).
+- **Table 2.** Mendelian-randomization results (`table2_mr_results.md`).
 
 ## Statements
 
