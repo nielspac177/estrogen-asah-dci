@@ -262,6 +262,8 @@ the GWAS Catalog); see the repository's data-access notes.
 
 ## Figures and tables
 
+- **Graphical abstract.** Question, the two designs with their estimates, and the
+  convergent conclusion (`figures/graphical_abstract.png`).
 - **Figure 1.** Study design: the two arms, their inputs, and their analyses
   (`figures/study_methods.png`).
 - **Figure 2.** Results overview: convergent evidence across the two designs
