@@ -1,58 +1,113 @@
-"""One-page workflow diagram: triangulating the role of estrogen in aSAH."""
+"""One-page workflow diagram: triangulating the role of estrogen in aSAH.
+
+Design goals: swimlanes to group each arm, right-angle merge connectors (no
+diagonals), concise text properly centered in every box, restrained palette.
+"""
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
+from matplotlib.lines import Line2D
+from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
-BLUE="#0072B2"; ORANGE="#E69F00"; GREEN="#009E73"; RED="#D55E00"; GREY="#666"; LIGHT="#EAF2F8"; LIGHTG="#E7F5EF"
-plt.rcParams.update({"font.size":9.5,"font.family":"DejaVu Sans"})
-fig,ax=plt.subplots(figsize=(9.5,7.2)); ax.axis("off"); ax.set_xlim(0,100); ax.set_ylim(0,100)
+plt.rcParams.update({"font.family": ["Avenir Next", "Arial"], "font.size": 10})
 
-def box(x,y,w,h,text,fc=LIGHT,ec=BLUE,bold=False,fs=9.5,tc="#111"):
-    ax.add_patch(FancyBboxPatch((x-w/2,y-h/2),w,h,boxstyle="round,pad=0.6,rounding_size=2",
-                fc=fc,ec=ec,lw=1.6))
-    ax.text(x,y,text,ha="center",va="center",fontsize=fs,color=tc,
-            fontweight="bold" if bold else "normal",wrap=True)
+INK = "#1b2733"; MUTE = "#5b6b7a"
+BLUE = "#0B6FB8"; BLUE_BG = "#EAF3FB"; BLUE_PANEL = "#F5F9FD"
+GREEN = "#0E8F6E"; GREEN_BG = "#E8F6F1"; GREEN_PANEL = "#F4FBF8"
+PUR = "#6D4AAF"; PUR_BG = "#F1ECFA"
+AMBER = "#B9812A"; AMBER_BG = "#FBF1DC"
 
-def arrow(x1,y1,x2,y2,color=GREY,style="-|>",lw=1.8,ls="-"):
-    ax.add_patch(FancyArrowPatch((x1,y1),(x2,y2),arrowstyle=style,mutation_scale=16,
-                color=color,lw=lw,linestyle=ls,shrinkA=2,shrinkB=2))
+fig, ax = plt.subplots(figsize=(10.5, 8.2)); ax.axis("off")
+ax.set_xlim(0, 100); ax.set_ylim(0, 100)
 
-# Title
-ax.text(50,97,"Triangulating the role of estrogen in aneurysmal subarachnoid haemorrhage",
-        ha="center",fontsize=12.5,fontweight="bold")
 
-# The question
-box(50,88,86,9,"THE QUESTION\nDoes estrogen protect the brain's vessels — fewer aneurysm ruptures (aSAH)\nand less delayed cerebral ischaemia (DCI)?  Animal models say yes; untested in humans.",
-    fc="#FFF7E6",ec=ORANGE,bold=False,fs=9.5)
+def card(x, y, w, h, lines, *, head=None, fc="white", ec=BLUE, tc=INK,
+         head_c=None, fs=9.3, lh=3.3, rs=2.2, lw=1.4):
+    """A rounded card with vertically-centered, optionally-headed text."""
+    ax.add_patch(FancyBboxPatch((x - w / 2, y - h / 2), w, h,
+                 boxstyle=f"round,pad=0.2,rounding_size={rs}", fc=fc, ec=ec, lw=lw))
+    items = ([("__head__", head)] if head else []) + [("body", ln) for ln in lines]
+    total = (len(items) - 1) * lh
+    top = y + total / 2
+    for i, (kind, txt) in enumerate(items):
+        yy = top - i * lh
+        if kind == "__head__":
+            ax.text(x, yy, txt, ha="center", va="center", fontsize=fs + 1.0,
+                    color=head_c or ec, fontweight="bold")
+        else:
+            ax.text(x, yy, txt, ha="center", va="center", fontsize=fs, color=tc)
 
-# Arm headers
-box(26,76,40,7,"ARM 1 — Observational (ICU data)",fc=LIGHT,ec=BLUE,bold=True)
-box(74,76,40,7,"ARM 2 — Genetic (Mendelian randomization)",fc=LIGHTG,ec=GREEN,bold=True)
-arrow(38,84,30,79.5); arrow(62,84,70,79.5)
 
-# Arm 1 chain
-box(26,66,42,8,"MIMIC-IV + eICU  ·  n = 1,771 aSAH patients\nExposure: menopausal state (age <51 vs ≥51)\nOutcome: DCI / vasospasm, in-hospital death",fc=LIGHT,ec=BLUE,fs=8.6)
-box(26,54.5,42,7.5,"Bias / weakness\nMenopause = age here → CONFOUNDED by age;\nno biological menopause data (1/354)",fc="#FDECEA",ec=RED,fs=8.4,tc="#7a2012")
-box(26,43,42,7.5,"RESULT\nNo protective effect\nadj. OR 0.86 (0.58–1.28); 41/72 specs opposite",fc="#EEF6FF",ec=BLUE,bold=True,fs=8.8)
-arrow(26,62,26,58.3); arrow(26,50.8,26,46.8)
+def varrow(x, y1, y2, color=MUTE, lw=1.7):
+    ax.add_patch(FancyArrowPatch((x, y1), (x, y2), arrowstyle="-|>",
+                 mutation_scale=14, color=color, lw=lw, shrinkA=0, shrinkB=0))
 
-# Arm 2 chain
-box(74,66,42,8,"Public GWAS  ·  hundreds of thousands of people\nExposure: genes for age at menopause / SHBG\nOutcome: aneurysm GWAS (Bakker 2020)",fc=LIGHTG,ec=GREEN,fs=8.6)
-box(74,54.5,42,7.5,"Bias / weakness\nGenes fixed at conception → NO age confounding;\nassumes genes act only via estrogen (pleiotropy check)",fc="#FDECEA",ec=RED,fs=8.4,tc="#7a2012")
-box(74,43,42,7.5,"RESULT\nNo protective effect\nIVW OR 1.03 (0.98–1.09); median 1.09 (1.00–1.19)",fc="#EEFBF5",ec=GREEN,bold=True,fs=8.8)
-arrow(74,62,74,58.3); arrow(74,50.8,74,46.8)
 
-# Converge
-arrow(26,39.2,44,30.5,color=BLUE); arrow(74,39.2,56,30.5,color=GREEN)
-box(50,26,66,9,"TRIANGULATION\nTwo designs with DIFFERENT, non-overlapping weaknesses give the SAME answer.\nIf age-confounding were hiding a real effect, the genetic arm (immune to it) would reveal it — it did not.",
-    fc="#F3EEFB",ec="#7B4FBE",bold=False,fs=9)
-arrow(50,21.5,50,16.5,color="#7B4FBE",lw=2.2)
+# title
+ax.text(50, 97, "Triangulating the role of estrogen in aneurysmal subarachnoid haemorrhage",
+        ha="center", fontsize=13, fontweight="bold", color=INK)
 
-# Conclusion
-box(50,11,94,8.5,"CONCLUSION\nThe animal-model 'estrogen protects' hypothesis is NOT supported in humans for aSAH.\nA rigorous, honest null triangulated across two independent methods.",
-    fc="#111",ec="#111",bold=True,fs=9.2,tc="white")
+# question
+card(50, 89, 92, 8, [
+    "Does estrogen protect the brain's vessels — fewer aneurysm ruptures (aSAH) and less",
+    "delayed cerebral ischaemia?   Protective in animal models · never tested in humans."],
+    fc="#FFFBF2", ec=AMBER, fs=9.2, lh=3.1)
+
+# swimlane panels
+ax.add_patch(FancyBboxPatch((5, 27.5), 43, 52.5, boxstyle="round,pad=0.2,rounding_size=3",
+             fc=BLUE_PANEL, ec=BLUE, lw=1.1, alpha=0.9))
+ax.add_patch(FancyBboxPatch((52, 27.5), 43, 52.5, boxstyle="round,pad=0.2,rounding_size=3",
+             fc=GREEN_PANEL, ec=GREEN, lw=1.1, alpha=0.9))
+
+# headers
+card(26.5, 75.5, 40, 6.4, [], head="ARM 1 · Observational (ICU)", fc=BLUE_BG, ec=BLUE, fs=9.4)
+card(73.5, 75.5, 40, 6.4, [], head="ARM 2 · Genetic (MR)", fc=GREEN_BG, ec=GREEN, fs=9.4)
+
+# setup
+card(26.5, 64, 38, 11, [
+    "MIMIC-IV + eICU", "1,771 aSAH patients", "Menopausal state → DCI / death"],
+    ec=BLUE, fs=9.1, lh=3.2)
+card(73.5, 64, 38, 11, [
+    "Public GWAS (100,000s of people)", "Menopause / SHBG gene variants",
+    "→ aneurysm GWAS (Bakker 2020)"], ec=GREEN, fs=9.1, lh=3.2)
+
+# weakness
+card(26.5, 50.5, 38, 9, ["confounded by age", "(menopause ≈ age; no hormone data)"],
+     head="WEAKNESS", fc=AMBER_BG, ec=AMBER, tc="#6b4a12", fs=8.7, lh=3.0)
+card(73.5, 50.5, 38, 9, ["genetic pleiotropy", "(but immune to age confounding)"],
+     head="WEAKNESS", fc=AMBER_BG, ec=AMBER, tc="#6b4a12", fs=8.7, lh=3.0)
+
+# result
+card(26.5, 37.5, 38, 9, ["No protective effect", "OR 0.86 (0.58–1.28)"],
+     head="RESULT", fc="white", ec=BLUE, fs=9.4, lh=3.1)
+card(73.5, 37.5, 38, 9, ["No protective effect", "OR 1.03 (0.98–1.09)"],
+     head="RESULT", fc="white", ec=GREEN, fs=9.4, lh=3.1)
+
+# intra-lane arrows (between box edges)
+for x, c in [(26.5, BLUE), (73.5, GREEN)]:
+    varrow(x, 72.3, 69.6, color=c)   # header -> setup
+    varrow(x, 58.4, 56.1, color=c)   # setup -> weakness
+    varrow(x, 45.9, 42.1, color=c)   # weakness -> result
+
+# merge connectors (right-angle)
+rail = 23.5
+for x, c in [(26.5, BLUE), (73.5, GREEN)]:
+    ax.add_line(Line2D([x, x], [33.0, rail], color=c, lw=1.7))
+ax.add_line(Line2D([26.5, 73.5], [rail, rail], color=MUTE, lw=1.7))
+varrow(50, rail, 21.1, color=PUR)
+
+# convergence
+card(50, 15.5, 86, 9, [
+    "Two independent methods with non-overlapping weaknesses reach the SAME answer.",
+    "If age-confounding were hiding a real effect, the genetic arm (immune) would show it."],
+    head="TRIANGULATION", fc=PUR_BG, ec=PUR, fs=8.9, lh=3.0)
+varrow(50, 11.0, 7.6, color=PUR)
+
+# conclusion
+card(50, 4.2, 92, 5.6, [
+    "Estrogen does not measurably protect against aneurysmal SAH in humans — a rigorous, honest null."],
+    fc="#12303a", ec="#12303a", tc="white", fs=10, rs=1.8)
 
 fig.savefig("/Volumes/Niels 2/MIMIC/estrogen-asah-dci/manuscript/figures/triangulation_workflow.png",
-            dpi=150,bbox_inches="tight")
-print("saved triangulation_workflow.png")
+            dpi=170, bbox_inches="tight", facecolor="white")
+print("saved")
