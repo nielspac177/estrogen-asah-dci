@@ -47,3 +47,5 @@ select = ["E", "F", "I", "UP", "B"]
 # The SPECS ground-truth table and eICU diagnosis strings are intentionally wide
 # for readability/alignment.
 "src/estrogen_asah_dci/synthetic.py" = ["E501"]
+# inline CSS / HTML template lines are intentionally long
+"dashboard/build.py" = ["E501"]
