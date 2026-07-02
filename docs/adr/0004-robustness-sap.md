@@ -17,12 +17,12 @@ not the product of p-hacking.
 Run a **fixed, fully-reported** set of alternative analyses (`scripts/run_60_robust.py`);
 report every result regardless of significance:
 
-1. **Survivor-restricted** (hospital survivors only) — competing-mortality fix #1.
-2. **Age-restricted 45–55** — isolates menopause from ageing (peri-menopausal band).
-3. **Overlap-weighted (ATO)** — exact covariate balance, no extrapolation.
-4. **Outcome variants** — vasospasm-only, rescue-procedure-only, delayed-infarction
+1. **Survivor-restricted** (hospital survivors only), competing-mortality fix #1.
+2. **Age-restricted 45–55**, isolates menopause from ageing (peri-menopausal band).
+3. **Overlap-weighted (ATO)**, exact covariate balance, no extrapolation.
+4. **Outcome variants**, vasospasm-only, rescue-procedure-only, delayed-infarction
    (ADR-0003 sensitivity).
-5. **Competing-events multinomial** — {neither, DCI, death-without-DCI}; death as a
+5. **Competing-events multinomial**, {neither, DCI, death-without-DCI}; death as a
    separate competing outcome rather than a collider.
 
 ## Multiplicity & interpretation rules

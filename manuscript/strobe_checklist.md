@@ -2,7 +2,7 @@
 
 | Item | Addressed in |
 |------|--------------|
-| Title/abstract — design + summary | Title; Abstract |
+| Title/abstract, design + summary | Title; Abstract |
 | Background/rationale | Introduction |
 | Objectives / hypothesis | Introduction (final paragraph) |
 | Study design | Methods → Data sources and study design; ADR-0002 |

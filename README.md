@@ -18,7 +18,7 @@ rupture 47% vs 7%); human cerebral endothelium expresses ERβ/GPER1. This
 protective estrogen→DCI effect **has never been tested in humans**, while the
 adjacent causal question (hormone→aSAH Mendelian randomization) is already
 published. ICU databases can't emulate a chronic-exposure target trial, but they
-*can* test estrogen **state** against **acute** DCI outcomes — their strength.
+*can* test estrogen **state** against **acute** DCI outcomes, their strength.
 
 ## Design (summary)
 
@@ -43,7 +43,7 @@ at your local copies.
 ## Reproducibility
 
 The full pipeline runs on a **committed synthetic fixture** (`data/synthetic/`,
-fake data) with no PhysioNet access, so anyone — and CI — can execute it end to
+fake data) with no PhysioNet access, so anyone, and CI, can execute it end to
 end:
 
 ```bash

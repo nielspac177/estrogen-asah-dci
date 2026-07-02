@@ -1,6 +1,6 @@
 # Table 1. Estimand comparison across the two designs
 
-| | Arm 1 — Observational (ICU) | Arm 2 — Genetic (Mendelian randomization) |
+| | Arm 1, Observational (ICU) | Arm 2, Genetic (Mendelian randomization) |
 |---|---|---|
 | **Exposure** | Menopausal state (age-based proxy: <51 vs ≥51) | Genetically predicted age at natural menopause (Ruth 2021 instruments) |
 | **Outcome node** | Delayed cerebral ischaemia / vasospasm, conditional on aSAH admission | aSAH liability (aneurysm rupture; Bakker 2020) |

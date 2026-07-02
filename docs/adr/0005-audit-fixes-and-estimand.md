@@ -22,7 +22,7 @@ produce the hypothesised OR>1 does so mechanically or by opening a collider.
 2. **Estimand reframing:** the estrogen-specific controlled direct effect is NOT
    identifiable in this cohort. We do not claim it. The honest confirmatory
    question becomes the *female-specific deviation in DCI odds across the
-   menopausal transition, net of the shared ageing gradient* — the **age×sex
+   menopausal transition, net of the shared ageing gradient*, the **age×sex
    spline difference-in-differences** (men as ageing reference; `multiverse.age_sex_did`).
 
 3. **Multiverse over fork-selection:** report the menopause OR across all defensible
@@ -39,6 +39,6 @@ produce the hypothesised OR>1 does so mechanically or by opening a collider.
 - Specification curve: 71/72 forks converged; **41 significant, all in the
   anti-hypothesis direction (OR<1); zero significant OR>1**. No cherry-pickable
   positive exists.
-- Age×sex spline DiD: OR-ratio **1.04 (0.62–1.76)** — no menopause inflection.
+- Age×sex spline DiD: OR-ratio **1.04 (0.62–1.76)**, no menopause inflection.
 - **Verdict: no defensible, literature-consistent positive finding is recoverable
   in this ICU pilot.** The credible causal route is the MR / registry-TTE arms.
